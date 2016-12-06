@@ -4,8 +4,28 @@
 #include<algorithm>
 #include<cstdlib>
 #include<time.h>
+#include<string>
 
 using namespace std;
+
+class TrashCan {
+public:
+	int size = 500; //can hold 500
+	//trash can
+	TrashCan() {
+
+	}
+	//trash can of custom size
+	TrashCan(int s) {
+		size = s;
+	}
+
+	friend TrashCan operator+(TrashCan a, TrashCan b) {
+		a.size = a.size+b.size;
+		return a;
+	}
+
+};
 
 int main() {
 
@@ -67,5 +87,37 @@ int main() {
 		cout<<*itItor<<endl;
 	}
 
+
+	//friends and operator overloading
+	cout<<endl;
+	TrashCan t1(1000);
+	cout<<"t1: "<<t1.size<<endl;
+	TrashCan t2;
+	cout<<"t2: "<<t2.size<<endl;
+	t1=t1+t2;
+	cout<<"t1: "<<t1.size<<endl;
+
+
+	//strings
+	string str = "Hello World";
+	cout<<endl<<str.substr(0, 5)<<endl;
+
+	cout<<str.find('H', 0)<<endl; //returns 0
+	cout<<str.find("llo", 0)<<endl; //returns 2
+	cout<<str.find('G', 0)<<endl; //returns npos (= 18446744073709551615)
+
+
+
+	str.erase(0, 5);
+	cout<<str<<endl;
+	str.insert(3, "Moo");
+	cout<<str<<endl;
+	str.replace(3, 1, "F");
+	cout<<str<<endl;
+
+	int lists[5];
+	cout<<endl<<sizeof(lists)/sizeof(int)<<endl;
+
 	return 0;
+
 }
